@@ -1,0 +1,40 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+  - name: create service group
+    delegate_to: localhost
+    netscaler_servicegroup:
+      nsip: 10.1.107.141
+      nitro_user: nsroot
+      nitro_pass: P@ssw0rd
+      validate_certs: no
+      state: present
+      servicegroupname: sg-apache1
+      servicetype: ANY
+      maxclient: 0
+      servicemembers:
+        - ip: 10.1.108.113
+          port: 80
+          weight: 50
+          
+        - ip: 10.1.107.174
+          port: 30055
+          weight: 50
+         
+
+  - name: Setup lb vserver
+    delegate_to: localhost
+    netscaler_lb_vserver:
+      nsip: 10.1.107.141
+      nitro_user: nsroot
+      nitro_pass: P@ssw0rd
+      validate_certs: no
+      state: present 
+      name: lb-vserver-http
+      servicetype: ANY
+      ipv46: 10.1.107.151
+      port: 80
+      timeout: 10
+      servicegroupbindings:
+        - servicegroupname: sg-apache1
