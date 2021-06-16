@@ -5,7 +5,7 @@
   - name: create service group
     delegate_to: localhost
     netscaler_servicegroup:
-      nsip: 10.1.107.141
+      nsip: 10.1.101.218
       nitro_user: nsroot
       nitro_pass: P@ssw0rd
       validate_certs: no
