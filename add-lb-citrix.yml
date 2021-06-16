@@ -35,6 +35,5 @@
       servicetype: ANY
       ipv46: 10.1.107.151
       port: 80
-      timeout: 10
       servicegroupbindings:
         - servicegroupname: sg-apache1
