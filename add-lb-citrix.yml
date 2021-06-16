@@ -16,17 +16,17 @@
       servicemembers:
         - ip: 10.1.108.113
           port: 80
-          weight: 50
+          weight: 1
           
         - ip: 10.1.107.174
           port: 30055
-          weight: 50
+          weight: 1
          
 
   - name: Setup lb vserver
     delegate_to: localhost
     netscaler_lb_vserver:
-      nsip: 10.1.107.141
+      nsip: 10.1.101.218
       nitro_user: nsroot
       nitro_pass: P@ssw0rd
       validate_certs: no
